@@ -1,6 +1,6 @@
 <template>
   <header
-    class="flex items-end bg-slate-500 text-white flexx justify-between px-4 py-2"
+    class="sticky top-0 flex items-end bg-slate-500 text-white flexx justify-between px-4 py-2"
   >
     <h1 class="text-xl"><NuxtLink to="/">Chinghuihui</NuxtLink></h1>
     <ul class="links">
@@ -17,7 +17,8 @@
   li {
     @apply block px-2;
 
-    .router-link-exact-active {
+    .router-link-exact-active,
+    .router-link-active {
       @apply text-red-300;
     }
   }

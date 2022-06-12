@@ -13,8 +13,8 @@
     </div>
     <div class="md:flex md:items-center md:flex-1">
       <div class="entry-cards">
-        <NuxtLink to="/about" class="entry-card"> ABOUT HUI</NuxtLink>
-        <NuxtLink to="/blog" class="entry-card">HUI BLOG</NuxtLink>
+        <NuxtLink to="/about" class="entry-card">ABOUT</NuxtLink>
+        <NuxtLink to="/blog" class="entry-card">BLOG</NuxtLink>
       </div>
     </div>
   </main>
