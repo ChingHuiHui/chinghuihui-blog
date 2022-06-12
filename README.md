@@ -1,3 +1,16 @@
+# chinghuihui-blog
+
+## TODO
+    - [x] basic layout and pages.
+        - [x] home
+        - [x] blog
+        - [x] about
+    - [x] publish my post.
+        - [x] nuxt/content
+        - [ ] category or tags
+    - [ ]  publish post to medium synchronously.
+    - [ ]  notify to Twitter if have new post.
+
 # Nuxt 3 Minimal Starter
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
