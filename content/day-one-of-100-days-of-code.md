@@ -1,6 +1,6 @@
 ---
 title: 'Day 1 / 100 days of code'
-createdAt: '2022/06/12'
+createdAt: '2022/06/12 18:12'
 ---
 :content-section-title{title="Description"}
 

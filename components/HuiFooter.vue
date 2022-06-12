@@ -14,8 +14,8 @@
 
 <script setup lang="ts">
 const mediaLinks: { title: string; to: string }[] = [
-  { title: 'github', to: 'https://github.com/ChingHuiHui' },
-  { title: 'twitter', to: 'https://twitter.com/chinghuihui_126' },
-  { title: 'email', to: 'mailto:sunny70624@gmail.com' },
+  { title: 'Github', to: 'https://github.com/ChingHuiHui' },
+  { title: 'Twitter', to: 'https://twitter.com/chinghuihui_126' },
+  { title: 'Email', to: 'mailto:sunny70624@gmail.com' },
 ]
 </script>

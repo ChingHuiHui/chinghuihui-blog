@@ -2,19 +2,19 @@
   <nav>
     <ul class="space-y-2">
       <li v-for="link in links" :key="link.to" class="list-item">
-        <NuxtLink :to="link.to" class="font-bold md:text-lg">
-          - {{ link.title }}
+        <NuxtLink :to="link.to" class="inline-block space-x-4">
+          <span class="font-bold md:text-lg">- {{ link.title }}</span>
+          <span class="text-xs">{{ link.createdAt }}</span>
         </NuxtLink>
-        <span class="text-xs">{{ link.createdAt }}</span>
       </li>
     </ul>
   </nav>
 </template>
 
 <script setup lang="ts">
-const articles = await queryContent().find()
+// TODO: find the createdAt property in @nuxt/content
+const articles = await queryContent().sort({ createdAt: -1 }).find()
 
-// TODO: sort the posts
 const links = computed(() =>
   articles.map((article) => ({
     title: article.title,
@@ -26,7 +26,7 @@ const links = computed(() =>
 
 <style scoped>
 .list-item {
-  @apply relative flex items-center space-x-4 w-fit;
+  @apply relative flex items-center w-fit;
 
   &::after {
     content: '';

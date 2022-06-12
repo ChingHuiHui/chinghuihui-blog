@@ -1,6 +1,6 @@
 ---
 title: '100 days of code'
-createdAt: '2022/06/12'
+createdAt: '2022/06/12 18:11'
 ---
 
 When I found this challenge, I thought this is interesting !!!!!
