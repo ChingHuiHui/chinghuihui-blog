@@ -1,14 +1,22 @@
-FROM node:lts-alpine as build-stage
+FROM node:lts as builder
+
 WORKDIR /app
 
-COPY package*.json ./
-COPY ./yarn.lock .
+COPY . .
 
-RUN yarn install
+RUN yarn install 
+
 RUN yarn build
 
-FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /app/.output .
+RUN rm -rf node_modules && NODE_ENV=production yarn install 
 
-EXPOSE 3000 
+FROM node:lts
+
+WORKDIR /app
+
+COPY --from=builder /app  .
+
+ENV HOST 0.0.0.0
+EXPOSE 80
+
 ENTRYPOINT ["node", ".output/server/index.mjs"]
