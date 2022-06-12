@@ -15,7 +15,7 @@ Haha ... use the todo-list as my first project for this challenge, and I started
 - TypeScript
 - TailwindCSS
 
-:content-section-title{title=""}
+:content-section-title{title="Todo"}
 
   - [x]  BASIC : app's basic style and logic.
     - [x]  create : a form ( a input ) to create a new TODO.

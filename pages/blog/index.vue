@@ -14,6 +14,7 @@
 <script setup lang="ts">
 const articles = await queryContent().find()
 
+// TODO: sort the posts
 const links = computed(() =>
   articles.map((article) => ({
     title: article.title,
