@@ -13,3 +13,7 @@ body {
     @apply text-gray-300;
   }
 }
+
+.category {
+  @apply p-1 rounded text-xs text-white;
+}

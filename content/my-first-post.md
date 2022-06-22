@@ -1,6 +1,8 @@
 ---
 title: 'Hello! This is Chinghuihui!'
 createdAt: '2022/06/12 14:00'
+category: ['DAILY']
+
 ---
 
  ```javascript

@@ -1,6 +1,8 @@
 ---
 title: 'Day 1 / 100 days of code'
 createdAt: '2022/06/12 18:12'
+category: [ 'JAVASCRIPT', '100_DAYS_OF_CODE']
+
 ---
 :content-section-title{title="Description"}
 

@@ -1,42 +1,128 @@
 <template>
-  <nav>
-    <ul class="space-y-2">
-      <li v-for="link in links" :key="link.to" class="list-item">
-        <NuxtLink :to="link.to" class="inline-block space-x-4">
-          <span class="font-bold md:text-lg">- {{ link.title }}</span>
-          <span class="text-xs">{{ link.createdAt }}</span>
-        </NuxtLink>
-      </li>
-    </ul>
-  </nav>
+  <div>
+    <nav class="category-filter">
+      <ul class="flex space-x-2">
+        <li v-for="category in categoryDictionary">
+          <span
+            @click="toggleCategory(category.name)"
+            class="category"
+            :class="[
+              category.color,
+              { active: activeCategories.includes(category.name) },
+            ]"
+          >
+            {{ category.label }}
+          </span>
+        </li>
+      </ul>
+    </nav>
+    <nav>
+      <ul class="space-y-2">
+        <li
+          v-for="article in filteredArticles"
+          :key="article.to"
+          class="list-item"
+        >
+          <NuxtLink :to="article.to" class="inline-block space-x-4 mb-1">
+            <span class="font-bold md:text-lg">- {{ article.title }}</span>
+            <span class="text-xs">{{ article.createdAt }}</span>
+          </NuxtLink>
+          <div class="space-x-2">
+            <span
+              class="category"
+              :class="category.color"
+              v-for="category in article.category"
+              :key="`${article.title}-${category}`"
+            >
+              {{ category.label }}
+            </span>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { useCategory } from '~/composables/useCategory'
+
+const { categoryDictionary, CATEGORY } = useCategory()
+
 // TODO: find the createdAt property in @nuxt/content
 const articles = await queryContent().sort({ createdAt: -1 }).find()
 
-const links = computed(() =>
-  articles.map((article) => ({
-    title: article.title,
-    to: `/blog${article._path}`,
-    createdAt: article.createdAt,
-  }))
+const filteredArticles = computed(() =>
+  articles
+    .map((article) => ({
+      title: article.title,
+      to: `/blog${article._path}`,
+      createdAt: article.createdAt,
+      category: article.category.map(
+        (category) => categoryDictionary[category]
+      ),
+    }))
+    .filter(({ category }) => {
+      const categoryList = category.map(({ name }) => name)
+      const filteredArray = categoryList.filter((value) =>
+        activeCategories.value.includes(value)
+      )
+
+      return filteredArray.length > 0
+    })
 )
+
+const activeCategories = ref(Object.values(CATEGORY))
+
+function toggleCategory(selectedCategory) {
+  if (activeCategories.value.includes(selectedCategory)) {
+    activeCategories.value = activeCategories.value.filter(
+      (category) => category !== selectedCategory
+    )
+
+    return
+  }
+
+  activeCategories.value = [...activeCategories.value, selectedCategory]
+}
 </script>
 
 <style scoped>
 .list-item {
-  @apply relative flex items-center w-fit;
+  @apply flex flex-col w-fit;
 
-  &::after {
-    content: '';
-
-    @apply absolute top-full left-0 w-0 bg-slate-600 h-0.5;
-    @apply transition-all duration-300;
+  span {
+    @apply relative z-20 transition-colors duration-300;
   }
 
-  &:hover::after {
-    @apply w-full;
+  a {
+    @apply relative bg-transparent;
+
+    &::after {
+      content: '';
+
+      @apply absolute top-0 h-full -left-1 w-0 bg-slate-600;
+      @apply transition-all duration-300 z-10;
+    }
+
+    &:hover {
+      @apply text-white;
+
+      &::after {
+        width: calc(100% + 1rem);
+      }
+    }
+  }
+}
+
+.category-filter {
+  @apply pb-4 mb-5 border-b;
+
+  .category {
+    @apply bg-opacity-30 cursor-pointer;
+
+    &.active {
+      @apply bg-opacity-100;
+    }
   }
 }
 </style>

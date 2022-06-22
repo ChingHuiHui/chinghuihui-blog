@@ -1,6 +1,8 @@
 ---
 title: '100 days of code'
 createdAt: '2022/06/12 18:11'
+category: ['DAILY', '100_DAYS_OF_CODE']
+
 ---
 
 When I found this challenge, I thought this is interesting !!!!!
