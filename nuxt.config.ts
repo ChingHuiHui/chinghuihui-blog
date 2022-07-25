@@ -9,4 +9,7 @@ export default defineNuxtConfig({
       meta: [{ name: 'description', content: "chinghuihui's blog" }],
     },
   },
+  build: {
+    transpile: ['@apollo/client'],
+  },
 })
